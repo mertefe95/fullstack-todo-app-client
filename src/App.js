@@ -35,7 +35,7 @@ function App() {
 
 			const userRes = await Axios({
 				method: "post",
-				url: "http://localhost:8080/users/tokenIsValid",
+				url: "https://fullstack-todo-app-server.herokuapp.com/users/tokenIsValid",
 				data: {},
 				headers: {
 					"x-auth-token": token,
@@ -52,7 +52,7 @@ function App() {
 	}, [])
 
 	useEffect(() => {
-		Axios.get("http://localhost:8080/todos")
+		Axios.get("https://fullstack-todo-app-server.herokuapp.com/todos")
 			.then((res) => setTodos(res.data))
 			.catch((error) => console.log(error))
 	})
