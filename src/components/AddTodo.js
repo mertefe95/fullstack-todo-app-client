@@ -33,6 +33,7 @@ function AddTodo() {
 				validationSchema={validationSchema}
 				onSubmit={async (values) => {
 					values.userId = userData.user.id
+					values.author = userData.user.username
 					await Axios.post(
 						"https://fullstack-todo-app-server.herokuapp.com/todos/add",
 						values
