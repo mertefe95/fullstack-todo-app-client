@@ -1,37 +1,40 @@
-import React, { useState } from 'react'
-import { Button } from 'react-bootstrap'
-import { Form, Formik, Field, ErrorMessage } from 'formik'
-import Axios from 'axios'
-import Alert from 'react-bootstrap/Alert'
-import * as Yup from 'yup'
-import TextField from '@material-ui/core/TextField'
-import { Link } from 'react-router-dom'
+import React, { useState } from "react"
+import { Button } from "react-bootstrap"
+import { Form, Formik, Field, ErrorMessage } from "formik"
+import Axios from "axios"
+import Alert from "react-bootstrap/Alert"
+import * as Yup from "yup"
+import TextField from "@material-ui/core/TextField"
+import { Link } from "react-router-dom"
 
 function Register() {
 	const [show, setShow] = useState({
-		successText: '',
-		errorText: '',
+		successText: "",
+		errorText: "",
 	})
 
 	const initialValues = {
-		username: '',
-		email: '',
-		password: '',
+		username: "",
+		email: "",
+		password: "",
 	}
 
 	const validationSchema = Yup.object().shape({
-		username: Yup.string().required('Required'),
-		email: Yup.string().email('Invalid email address').required('Required'),
-		password: Yup.string().required('Required'),
+		username: Yup.string().required("Required"),
+		email: Yup.string().email("Invalid email address").required("Required"),
+		password: Yup.string().required("Required"),
 	})
 
 	return (
-		<div className='register-div'>
+		<div className="register-div">
 			<Formik
 				initialValues={initialValues}
 				validationSchema={validationSchema}
 				onSubmit={async (values) => {
-					await Axios.post('http://localhost:8080/users/register', values)
+					await Axios.post(
+						"https://fullstack-todo-app-server.herokuapp.com/users/register",
+						values
+					)
 						.then((response) => {
 							setShow({ successText: response.data.msg })
 						})
@@ -41,11 +44,11 @@ function Register() {
 				}}
 			>
 				{({ values, isSubmitting }) => (
-					<Form className='register-form'>
+					<Form className="register-form">
 						{show.errorText ? (
 							<Alert
-								variant='danger'
-								onClose={() => setShow({ errorText: '' })}
+								variant="danger"
+								onClose={() => setShow({ errorText: "" })}
 								dismissible
 							>
 								<Alert.Heading>Oh snap! You got an error!</Alert.Heading>
@@ -56,25 +59,25 @@ function Register() {
 						)}
 
 						{show.successText ? (
-							<Alert className='successmessage' show={show} variant='success'>
-								<Alert.Heading className='sucessheader'>Success!</Alert.Heading>
-								<p className='successtext'>{show.successText}</p>
+							<Alert className="successmessage" show={show} variant="success">
+								<Alert.Heading className="sucessheader">Success!</Alert.Heading>
+								<p className="successtext">{show.successText}</p>
 								<hr />
 								<div
-									style={{ flexDirection: 'row' }}
-									className='success-text-div d-flex  justify-content-end'
+									style={{ flexDirection: "row" }}
+									className="success-text-div d-flex  justify-content-end"
 								>
-									<Link className='success-text-login' to='/login'>
+									<Link className="success-text-login" to="/login">
 										<Button
-											onClick={() => setShow({ successText: '' })}
-											variant='outline-success'
+											onClick={() => setShow({ successText: "" })}
+											variant="outline-success"
 										>
 											Go to Login Page
 										</Button>
 									</Link>
 									<Button
-										onClick={() => setShow({ successText: '' })}
-										variant='outline-success'
+										onClick={() => setShow({ successText: "" })}
+										variant="outline-success"
 									>
 										Close
 									</Button>
@@ -84,74 +87,74 @@ function Register() {
 							<></>
 						)}
 
-						<div className='username'>
-							<label className='label username-label' htmlFor='username'>
+						<div className="username">
+							<label className="label username-label" htmlFor="username">
 								Username
 							</label>
 							<Field
 								as={TextField}
-								className='field username-field'
-								id='username'
-								name='username'
-								type='type'
-								placeholder='Enter username'
+								className="field username-field"
+								id="username"
+								name="username"
+								type="type"
+								placeholder="Enter username"
 							/>
-							<p className='text-muted'>
+							<p className="text-muted">
 								Provide us an username that you would like to have.
 							</p>
-							<ErrorMessage className='errormessage' name='username'>
+							<ErrorMessage className="errormessage" name="username">
 								{(msg) => (
-									<Alert className='alertmessage' variant='danger'>
+									<Alert className="alertmessage" variant="danger">
 										{msg}
 									</Alert>
 								)}
 							</ErrorMessage>
 						</div>
 
-						<div className='email-div'>
-							<label className='label email-label' htmlFor='email'>
+						<div className="email-div">
+							<label className="label email-label" htmlFor="email">
 								Email address
 							</label>
 							<Field
 								as={TextField}
-								className='field email-field'
-								type='email'
-								id='email'
-								name='email'
-								placeholder='Enter email'
+								className="field email-field"
+								type="email"
+								id="email"
+								name="email"
+								placeholder="Enter email"
 							/>
-							<p className='text-muted'>
+							<p className="text-muted">
 								We'll never share your email with anyone else.
 							</p>
-							<ErrorMessage className='errormessage' name='email'>
+							<ErrorMessage className="errormessage" name="email">
 								{(msg) => (
-									<Alert className='alertmessage' variant='danger'>
+									<Alert className="alertmessage" variant="danger">
 										{msg}
 									</Alert>
 								)}
 							</ErrorMessage>
 						</div>
 
-						<div className='password-div'>
-							<label className='label password-label'>Password</label>
+						<div className="password-div">
+							<label className="label password-label">Password</label>
 							<Field
 								as={TextField}
-								className='field password-field'
-								type='password'
-								id='password'
-								name='password'
-								placeholder='Password'
+								className="field password-field"
+								type="password"
+								id="password"
+								name="password"
+								placeholder="Password"
 							/>
-							<ErrorMessage className='errormessage' name='password'>
+							<ErrorMessage className="errormessage" name="password">
 								{(msg) => (
-									<Alert className='alertmessage' variant='danger'>
+									<Alert className="alertmessage" variant="danger">
 										{msg}
 									</Alert>
 								)}
 							</ErrorMessage>
 						</div>
 
-						<Button variant='primary' type='submit'>
+						<Button variant="primary" type="submit">
 							Submit
 						</Button>
 					</Form>

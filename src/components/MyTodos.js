@@ -1,15 +1,15 @@
-import React, { useContext, useState } from 'react'
-import Card from 'react-bootstrap/Card'
-import UserContext from './context/UserContext'
-import { PencilSquare } from 'react-bootstrap-icons'
-import { XSquare } from 'react-bootstrap-icons'
-import { XSquareFill } from 'react-bootstrap-icons'
-import { ArrowRight } from 'react-bootstrap-icons'
-import { Check2Square } from 'react-bootstrap-icons'
-import Alert from 'react-bootstrap/Alert'
-import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
-import Axios from 'axios'
+import React, { useContext, useState } from "react"
+import Card from "react-bootstrap/Card"
+import UserContext from "./context/UserContext"
+import { PencilSquare } from "react-bootstrap-icons"
+import { XSquare } from "react-bootstrap-icons"
+import { XSquareFill } from "react-bootstrap-icons"
+import { ArrowRight } from "react-bootstrap-icons"
+import { Check2Square } from "react-bootstrap-icons"
+import Alert from "react-bootstrap/Alert"
+import { Link } from "react-router-dom"
+import { Button } from "react-bootstrap"
+import Axios from "axios"
 
 function MyTodos({ todos }) {
 	const { userData } = useContext(UserContext)
@@ -20,12 +20,14 @@ function MyTodos({ todos }) {
 	const [editTitle, setEditTitle] = useState()
 	const [editText, setEditText] = useState()
 	const [show, setShow] = useState({
-		successText: '',
-		errorText: '',
+		successText: "",
+		errorText: "",
 	})
 
 	const onDelete = async (id) => {
-		await Axios.delete(`http://localhost:8080/todos/${id}`)
+		await Axios.delete(
+			`https://fullstack-todo-app-server.herokuapp.com/todos/${id}`
+		)
 			.then((response) => {
 				setShow({ successText: response.data.msg })
 			})
@@ -51,27 +53,27 @@ function MyTodos({ todos }) {
 	}
 
 	return (
-		<div className='all-todos'>
+		<div className="all-todos">
 			{show.successText ? (
-				<Alert className='successmessage' show={show} variant='success'>
-					<Alert.Heading className='sucessheader'>Success!</Alert.Heading>
-					<p className='successtext'>{show.successText}</p>
+				<Alert className="successmessage" show={show} variant="success">
+					<Alert.Heading className="sucessheader">Success!</Alert.Heading>
+					<p className="successtext">{show.successText}</p>
 					<hr />
 					<div
-						style={{ flexDirection: 'row' }}
-						className='success-text-div d-flex  justify-content-end'
+						style={{ flexDirection: "row" }}
+						className="success-text-div d-flex  justify-content-end"
 					>
-						<Link className='success-text-login' to='/login'>
+						<Link className="success-text-login" to="/login">
 							<Button
-								onClick={() => setShow({ successText: '' })}
-								variant='outline-success'
+								onClick={() => setShow({ successText: "" })}
+								variant="outline-success"
 							>
 								Go to Login Page
 							</Button>
 						</Link>
 						<Button
-							onClick={() => setShow({ successText: '' })}
-							variant='outline-success'
+							onClick={() => setShow({ successText: "" })}
+							variant="outline-success"
 						>
 							Close
 						</Button>
@@ -84,13 +86,13 @@ function MyTodos({ todos }) {
 			{todos
 				.filter((todo) => todo.userid == userData.user.id)
 				.map((filteredTodo, key) => (
-					<div className='todo-div'>
+					<div className="todo-div">
 						<Card
-							bg='primary'
+							bg="primary"
 							key={key}
-							text='white'
-							style={{ width: '18rem' }}
-							className='mb-2'
+							text="white"
+							style={{ width: "18rem" }}
+							className="mb-2"
 						>
 							<Card.Header>{filteredTodo.author}'s Todo List</Card.Header>
 							<Card.Body>
@@ -99,14 +101,14 @@ function MyTodos({ todos }) {
 									<p>{filteredTodo.title}</p>
 									{edit ? (
 										<input
-											type='text'
+											type="text"
 											onChange={(e) => setEditTitle(e.target.value)}
 										/>
 									) : null}
 									<p>{filteredTodo.text}</p>
 									{edit ? (
 										<input
-											type='text'
+											type="text"
 											onChange={(e) => setEditText(e.target.value)}
 										/>
 									) : null}
@@ -114,22 +116,22 @@ function MyTodos({ todos }) {
 								</Card.Text>
 								<button
 									onClick={() => setEdit(!edit)}
-									style={{ background: 'transparent ', border: 'none' }}
+									style={{ background: "transparent ", border: "none" }}
 								>
-									<PencilSquare fontSize='30px' color='white' />
+									<PencilSquare fontSize="30px" color="white" />
 								</button>
 								<button
 									onClick={() => onDelete(filteredTodo.id)}
-									style={{ background: 'transparent ', border: 'none' }}
+									style={{ background: "transparent ", border: "none" }}
 								>
-									<XSquare fontSize='30px' color='white' />
+									<XSquare fontSize="30px" color="white" />
 								</button>
 								{edit ? (
 									<button
 										onClick={() => onEdit(filteredTodo.id)}
-										style={{ background: 'transparent ', border: 'none' }}
+										style={{ background: "transparent ", border: "none" }}
 									>
-										<Check2Square fontSize='30px' color='white' />
+										<Check2Square fontSize="30px" color="white" />
 									</button>
 								) : null}
 							</Card.Body>
