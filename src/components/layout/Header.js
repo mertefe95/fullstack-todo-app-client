@@ -9,14 +9,14 @@ function Header() {
 
 	const handleData = async () => {
 		await setUserData({
-      token: null,
-      user: {
-        email: null,
-        username: null,
-        id: null
-      }})
-      await localStorage.setItem('auth-token', '')
-    
+			token: null,
+			user: {
+				email: null,
+				username: null,
+				id: null,
+			},
+		})
+		await localStorage.setItem('auth-token', '')
 	}
 
 	return (
@@ -28,11 +28,10 @@ function Header() {
 			</Nav>
 			<Form inline>
 				{userData.user.id === null ? (
-          <>
+					<>
 						<Nav.Link href='/register'>REGISTER</Nav.Link>
 						<Nav.Link href='/login'>LOGIN</Nav.Link>
 					</>
-					
 				) : (
 					<>
 						<Nav.Link href='/add-todo'>ADD TODO</Nav.Link>

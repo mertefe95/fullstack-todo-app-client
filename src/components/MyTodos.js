@@ -42,8 +42,8 @@ function MyTodos({ todos }) {
 
 		await Axios.put(`http://localhost:8080/todos/${id}`, editTodo)
 			.then((response) => {
-        setShow({ successText: response.data.msg })
-        setEdit(!edit);
+				setShow({ successText: response.data.msg })
+				setEdit(!edit)
 			})
 			.catch((err) => {
 				setShow({ errorText: err.response.data.msg })

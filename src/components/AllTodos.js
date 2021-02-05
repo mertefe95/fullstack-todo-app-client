@@ -1,9 +1,9 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import Card from 'react-bootstrap/Card'
-import UserContext from "./context/UserContext";
+import UserContext from './context/UserContext'
 
 function AllTodos({ todos }) {
-  const { userData } = useContext(UserContext)
+	const { userData } = useContext(UserContext)
 
 	const sortedArray = todos.sort((a, b) => (a.userId > b.userId ? 1 : -1))
 	return (
