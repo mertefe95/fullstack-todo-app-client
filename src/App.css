@@ -2,10 +2,16 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Oswald" !important;
+  letter-spacing: 1px;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.register-div, .register-form, .register-form div {
+.register-div,
+.register-form,
+.register-form div {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,12 +31,10 @@
   border-radius: 4px;
 }
 
-
 .label {
   font-weight: 600;
   font-size: 1.3rem;
 }
-
 
 .alertmessage {
   width: 100px;
@@ -41,7 +45,6 @@
 }
 
 .successmessage {
-
 }
 
 .success-text-div button {
@@ -50,4 +53,33 @@
 }
 .success-text-login:hover {
   text-decoration: none;
+}
+
+.notfound-alert {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 200px;
+  width: 60%;
+}
+
+.notfound-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+  width: 100%;
+}
+
+.notfound-inner-div {
+  padding: 50px 100px;
+  text-align: center;
+}
+
+.notfound-inner-div p {
+  padding: 20px;
+}
+
+.notfound-button {
+  margin: 0 20px;
 }

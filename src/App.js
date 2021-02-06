@@ -10,6 +10,7 @@ import Register from "./components/Register"
 import Login from "./components/Login"
 import AddTodo from "./components/AddTodo"
 import MyTodos from "./components/MyTodos"
+import pageNotFound from "./components/404";
 
 import "./App.css"
 
@@ -66,6 +67,7 @@ function App() {
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/add-todo" component={AddTodo} />
+					<Route component={pageNotFound} />
 					<Route
 						exact
 						path="/mytodos"

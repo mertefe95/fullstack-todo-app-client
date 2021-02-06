@@ -4,7 +4,7 @@ import UserContext from "./context/UserContext"
 import { PencilSquare } from "react-bootstrap-icons"
 import { XSquare } from "react-bootstrap-icons"
 import { XSquareFill } from "react-bootstrap-icons"
-import { ArrowRight } from "react-bootstrap-icons"
+
 import { Check2Square } from "react-bootstrap-icons"
 import Alert from "react-bootstrap/Alert"
 import { Link } from "react-router-dom"
@@ -25,9 +25,7 @@ function MyTodos({ todos }) {
 	})
 
 	const onDelete = async (id) => {
-		await Axios.delete(
-			`https://fullstack-todo-app-server.herokuapp.com/todos/${id}`
-		)
+		await Axios.delete(`https://fullstack-todo-app-server.herokuapp.com/todos/${id}`)
 			.then((response) => {
 				setShow({ successText: response.data.msg })
 			})
