@@ -12,7 +12,8 @@ import { Check2Square } from "react-bootstrap-icons"
 function AllTodos({ todos }) {
 
 
-	const [edit, setEdit] = useState(false)
+	const [edit, setEdit] = useState(false);
+	const [editId, setEditId] = useState();
 	const [editTitle, setEditTitle] = useState()
 	const [editText, setEditText] = useState()
 	const [show, setShow] = useState({
@@ -32,6 +33,11 @@ function AllTodos({ todos }) {
 			.catch((err) => {
 				setShow({ errorText: err.response.data.msg })
 			})
+	}
+
+	const editClick = async (id) => {
+		await setEdit(!edit)
+		await setEditId(id)
 	}
 
 	const onEdit = async (id) => {
@@ -54,7 +60,8 @@ function AllTodos({ todos }) {
 	return (
 		<div className="all-todos">
 		{show.successText ? (
-				<Alert className="successmessage" show={show} variant="success">
+			<div className="all-todos-success">
+				<Alert className="successmessage-alltodos" show={show} variant="success">
 					<Alert.Heading className="sucessheader">Success!</Alert.Heading>
 					<p className="successtext">{show.successText}</p>
 					<hr />
@@ -78,35 +85,34 @@ function AllTodos({ todos }) {
 						</Button>
 					</div>
 				</Alert>
+				</div>
 			) : (
 				<></>
 			)}
 			{sortedArray.map((todo, key) => (
 	
 
-				<div className="todo-div" key={key}>
+				<div className="todo-div">
 					<Card
 						bg={userData.user.id == todo.userid ? "primary" : "success"}
 						key={key}
 						text="white"
-						style={{ width: "18rem" }}
-						className="mb-2"
+						style={{ width: "18rem", minHeight: "300px" }}
+						className="mb-2 card"
 					>
 						<Card.Header>{todo.author}'s Todo List</Card.Header>
 						<Card.Body>
-							<Card.Title>Card Title </Card.Title>
+							<Card.Title className="todo-title">{todo.title} </Card.Title>
 							<Card.Text>
-								<p>{todo.title}</p>
-								{edit && userData.user.id == todo.userid ? (
+								{edit && editId == todo.id ? (
 										<Form.Control
 											type="text"
 											onChange={(e) => setEditTitle(e.target.value)}
 											placeholder="Enter the new title"
 										/>
-									) : null}
-												
-								<p>{todo.text}</p>
-								{edit && userData.user.id == todo.userid ? (
+									) : null}	
+								<p className="todo-text">{todo.text}</p>
+								{edit && editId == todo.id  ? (
 										<Form.Control
 											type="text"
 											onChange={(e) => setEditText(e.target.value)}
@@ -114,13 +120,13 @@ function AllTodos({ todos }) {
 										/>
 									) : null}
 								
-								<p>{todo.author}</p>
+							
 							</Card.Text>
 
 							{ userData.user.id == todo.userid ?
 							<>
 							<button
-									onClick={() => setEdit(!edit)}
+									onClick={() => editClick(todo.id)}
 									style={{ background: "transparent ", border: "none" }}
 								>
 									<PencilSquare fontSize="30px" color="white" />
@@ -139,7 +145,7 @@ function AllTodos({ todos }) {
 								<></>
 							}
 
-								{edit && userData.user.id == todo.userid ? (
+								{edit && editId == todo.id ? (
 									<button
 										onClick={() => onEdit(todo.id)}
 										style={{ background: "transparent ", border: "none" }}

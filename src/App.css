@@ -47,6 +47,12 @@
 .successmessage {
 }
 
+.all-todos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin: 20px 20px;
+}
+
 .success-text-div button {
   display: flex;
   margin: 20px;
@@ -90,4 +96,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.todo-title {
+  text-decoration: underline;
+}
+
+.all-todos-success,
+.successmessage-alltodos {
+  width: 100%;
 }
