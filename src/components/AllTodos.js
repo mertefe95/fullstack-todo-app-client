@@ -50,7 +50,7 @@ function AllTodos({ todos }) {
 			})
 	}
 
-	const sortedArray = todos.sort((a, b) => (a.userId > b.userId ? 1 : -1))
+	const sortedArray = [...todos].sort((a, b) => (a.userId > b.userId ? 1 : -1))
 	return (
 		<div className="all-todos">
 		{show.successText ? (
@@ -62,12 +62,12 @@ function AllTodos({ todos }) {
 						style={{ flexDirection: "row" }}
 						className="success-text-div d-flex  justify-content-end"
 					>
-						<Link className="success-text-login" to="/login">
+						<Link className="success-text-todo" to="/add-todo">
 							<Button
 								onClick={() => setShow({ successText: "" })}
 								variant="outline-success"
 							>
-								Go to Login Page
+								Create Another Todo
 							</Button>
 						</Link>
 						<Button
@@ -97,7 +97,7 @@ function AllTodos({ todos }) {
 							<Card.Title>Card Title </Card.Title>
 							<Card.Text>
 								<p>{todo.title}</p>
-								{edit ? (
+								{edit && userData.user.id == todo.userid ? (
 										<Form.Control
 											type="text"
 											onChange={(e) => setEditTitle(e.target.value)}
@@ -106,8 +106,8 @@ function AllTodos({ todos }) {
 									) : null}
 												
 								<p>{todo.text}</p>
-								{edit ? (
-										<input
+								{edit && userData.user.id == todo.userid ? (
+										<Form.Control
 											type="text"
 											onChange={(e) => setEditText(e.target.value)}
 											placeholder="Enter the new text"

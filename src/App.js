@@ -67,12 +67,12 @@ function App() {
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/add-todo" component={AddTodo} />
-					<Route component={pageNotFound} />
+					
 					<Route
-						exact
-						path="/mytodos"
+						exact path="/mytodos"
 						render={() => <MyTodos todos={todos} />}
 					/>
+					<Route component={pageNotFound} />
 				</Switch>
 				<Footer />
 			</UserContext.Provider>

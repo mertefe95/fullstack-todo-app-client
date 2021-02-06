@@ -139,4 +139,4 @@ function MyTodos({ todos }) {
 	)
 }
 
-export default MyTodos
+export default MyTodos;
