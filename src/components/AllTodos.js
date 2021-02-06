@@ -10,6 +10,8 @@ import { Link } from "react-router-dom"
 import { Check2Square } from "react-bootstrap-icons"
 
 function AllTodos({ todos }) {
+
+
 	const [edit, setEdit] = useState(false)
 	const [editTitle, setEditTitle] = useState()
 	const [editText, setEditText] = useState()
@@ -17,6 +19,7 @@ function AllTodos({ todos }) {
 		successText: "",
 		errorText: "",
 	})
+
 
 	const { userData } = useContext(UserContext)
 
@@ -37,7 +40,7 @@ function AllTodos({ todos }) {
 			text: editText,
 		}
 
-		await Axios.put(`http://localhost:8080/todos/${id}`, editTodo)
+		await Axios.put(`https://fullstack-todo-app-server.herokuapp.com/todos/${id}`, editTodo)
 			.then((response) => {
 				setShow({ successText: response.data.msg })
 				setEdit(!edit)
@@ -80,7 +83,8 @@ function AllTodos({ todos }) {
 			)}
 			{sortedArray.map((todo, key) => (
 	
-				<div className="todo-div" key={todo.userId}>
+
+				<div className="todo-div" key={key}>
 					<Card
 						bg={userData.user.id == todo.userid ? "primary" : "success"}
 						key={key}
@@ -93,21 +97,23 @@ function AllTodos({ todos }) {
 							<Card.Title>Card Title </Card.Title>
 							<Card.Text>
 								<p>{todo.title}</p>
-								
-							
 								{edit ? (
 										<Form.Control
 											type="text"
 											onChange={(e) => setEditTitle(e.target.value)}
+											placeholder="Enter the new title"
 										/>
 									) : null}
+												
 								<p>{todo.text}</p>
 								{edit ? (
-										<Form.Control
+										<input
 											type="text"
 											onChange={(e) => setEditText(e.target.value)}
+											placeholder="Enter the new text"
 										/>
 									) : null}
+								
 								<p>{todo.author}</p>
 							</Card.Text>
 
@@ -119,7 +125,9 @@ function AllTodos({ todos }) {
 								>
 									<PencilSquare fontSize="30px" color="white" />
 								</button>
+								
 
+								
 								<button
 									onClick={() => onDelete(todo.id)}
 									style={{ background: "transparent ", border: "none" }}
@@ -131,7 +139,7 @@ function AllTodos({ todos }) {
 								<></>
 							}
 
-								{edit ? (
+								{edit && userData.user.id == todo.userid ? (
 									<button
 										onClick={() => onEdit(todo.id)}
 										style={{ background: "transparent ", border: "none" }}

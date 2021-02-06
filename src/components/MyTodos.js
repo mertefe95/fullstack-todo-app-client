@@ -39,7 +39,7 @@ function MyTodos({ todos }) {
 			text: editText,
 		}
 
-		await Axios.put(`http://localhost:8080/todos/${id}`, editTodo)
+		await Axios.put(`https://fullstack-todo-app-server.herokuapp.com/todos/${id}`, editTodo)
 			.then((response) => {
 				setShow({ successText: response.data.msg })
 				setEdit(!edit)
