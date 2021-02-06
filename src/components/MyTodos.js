@@ -4,11 +4,10 @@ import UserContext from "./context/UserContext"
 import { PencilSquare } from "react-bootstrap-icons"
 import { XSquare } from "react-bootstrap-icons"
 import { XSquareFill } from "react-bootstrap-icons"
-
 import { Check2Square } from "react-bootstrap-icons"
 import Alert from "react-bootstrap/Alert"
 import { Link } from "react-router-dom"
-import { Button } from "react-bootstrap"
+import { Button, Form } from "react-bootstrap"
 import Axios from "axios"
 
 function MyTodos({ todos }) {
@@ -98,14 +97,14 @@ function MyTodos({ todos }) {
 								<Card.Text>
 									<p>{filteredTodo.title}</p>
 									{edit ? (
-										<input
+										<Form.Control
 											type="text"
 											onChange={(e) => setEditTitle(e.target.value)}
 										/>
 									) : null}
 									<p>{filteredTodo.text}</p>
 									{edit ? (
-										<input
+										<Form.Control
 											type="text"
 											onChange={(e) => setEditText(e.target.value)}
 										/>
