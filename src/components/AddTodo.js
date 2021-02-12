@@ -105,7 +105,7 @@ function AddTodo() {
 							<p className="text-muted">
 								Provide us a todo title that you would like to have.
 							</p>
-							<ErrorMessage className="errormessage" name="username">
+							<ErrorMessage className="errormessage" name="title">
 								{(msg) => (
 									<Alert className="alertmessage" variant="danger">
 										{msg}
@@ -127,7 +127,7 @@ function AddTodo() {
 								placeholder="Enter text"
 							/>
 							<p className="text-muted">Write your todo text here.</p>
-							<ErrorMessage className="errormessage" name="email">
+							<ErrorMessage className="errormessage" name="text">
 								{(msg) => (
 									<Alert className="alertmessage" variant="danger">
 										{msg}
