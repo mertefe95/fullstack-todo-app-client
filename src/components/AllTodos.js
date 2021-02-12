@@ -56,7 +56,11 @@ function AllTodos({ todos }) {
 			})
 	}
 
-	const sortedArray = [...todos].sort((a, b) => (a.userId > b.userId ? 1 : -1))
+	const sortedArray = [...todos].sort((a, b) => {
+		if (b.author  == userData.user.username) return 1;
+		else return -1;
+	})
+	
 	return (
 		<div className="all-todos">
 		{show.successText ? (
