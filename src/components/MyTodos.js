@@ -16,6 +16,7 @@ function MyTodos({ todos }) {
 	console.log(userData)
 
 	const [edit, setEdit] = useState(false)
+	const [editId, setEditId] = useState();
 	const [editTitle, setEditTitle] = useState()
 	const [editText, setEditText] = useState()
 	const [show, setShow] = useState({
@@ -33,11 +34,17 @@ function MyTodos({ todos }) {
 			})
 	}
 
+	const editClick = async (id) => {
+		await setEdit(!edit)
+		await setEditId(id)
+	}
+
 	const onEdit = async (id) => {
 		let editTodo = {
 			title: editTitle,
 			text: editText,
 		}
+		
 
 		await Axios.put(`https://fullstack-todo-app-server.herokuapp.com/todos/${id}`, editTodo)
 			.then((response) => {
@@ -52,6 +59,7 @@ function MyTodos({ todos }) {
 	return (
 		<div className="all-todos">
 			{show.successText ? (
+				<div className="all-todos-success">
 				<Alert className="successmessage" show={show} variant="success">
 					<Alert.Heading className="sucessheader">Success!</Alert.Heading>
 					<p className="successtext">{show.successText}</p>
@@ -76,6 +84,7 @@ function MyTodos({ todos }) {
 						</Button>
 					</div>
 				</Alert>
+				</div>
 			) : (
 				<></>
 			)}
@@ -88,42 +97,52 @@ function MyTodos({ todos }) {
 							bg="primary"
 							key={key}
 							text="white"
-							style={{ width: "18rem" }}
+							style={{ width: "18rem", minHeight: "300px" }}
 							className="mb-2"
 						>
 							<Card.Header>{filteredTodo.author}'s Todo List</Card.Header>
 							<Card.Body>
-								<Card.Title>Card Title </Card.Title>
+								<Card.Title className="todo-title">{filteredTodo.title}</Card.Title>
 								<Card.Text>
-									<p>{filteredTodo.title}</p>
-									{edit ? (
+								{edit && editId == filteredTodo.id ? (
 										<Form.Control
 											type="text"
 											onChange={(e) => setEditTitle(e.target.value)}
+											placeholder="Enter the new title"
 										/>
-									) : null}
-									<p>{filteredTodo.text}</p>
-									{edit ? (
+									) : null}	
+								<p className="todo-text">{filteredTodo.text}</p>
+								{edit && editId == filteredTodo.id  ? (
 										<Form.Control
 											type="text"
 											onChange={(e) => setEditText(e.target.value)}
+											placeholder="Enter the new text"
 										/>
 									) : null}
-									<p>{filteredTodo.author}</p>
 								</Card.Text>
-								<button
-									onClick={() => setEdit(!edit)}
+								{ userData.user.id == filteredTodo.userid ?
+							<>
+							<button
+									onClick={() => editClick(filteredTodo.id)}
 									style={{ background: "transparent ", border: "none" }}
 								>
 									<PencilSquare fontSize="30px" color="white" />
 								</button>
+								
+
+								
 								<button
 									onClick={() => onDelete(filteredTodo.id)}
 									style={{ background: "transparent ", border: "none" }}
 								>
 									<XSquare fontSize="30px" color="white" />
 								</button>
-								{edit ? (
+								</>
+								:
+								<></>
+							}
+
+								{edit && editId == filteredTodo.id ? (
 									<button
 										onClick={() => onEdit(filteredTodo.id)}
 										style={{ background: "transparent ", border: "none" }}
@@ -131,6 +150,8 @@ function MyTodos({ todos }) {
 										<Check2Square fontSize="30px" color="white" />
 									</button>
 								) : null}
+							
+
 							</Card.Body>
 						</Card>
 					</div>

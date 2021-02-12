@@ -60,7 +60,7 @@ function Login() {
 								onClose={() => setShow({ errorText: "" })}
 								dismissible
 							>
-								<Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+								<Alert.Heading style={{ paddingRight: "40px"}}>Oh snap! You got an error!</Alert.Heading>
 								<p>{show.errorText}</p>
 							</Alert>
 						) : (

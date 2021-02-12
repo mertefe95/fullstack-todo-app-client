@@ -1,4 +1,3 @@
-import Footer from "./components/layout/Footer"
 import Header from "./components/layout/Header"
 import AllTodos from "./components/AllTodos"
 import React, { useState, useEffect } from "react"
@@ -74,7 +73,6 @@ function App() {
 					/>
 					<Route component={pageNotFound} />
 				</Switch>
-				<Footer />
 			</UserContext.Provider>
 		</Router>
 	)

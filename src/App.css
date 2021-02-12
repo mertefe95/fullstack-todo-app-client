@@ -37,14 +37,11 @@
 }
 
 .alertmessage {
-  width: 100px;
+  width: 200px;
 }
 
 .text-muted {
   font-size: 15px;
-}
-
-.successmessage {
 }
 
 .all-todos {
@@ -130,11 +127,12 @@
 }
 
 .successmessage {
-  width: 30%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-right: 30px;
 }
 
 .todo-title {
@@ -144,4 +142,13 @@
 .all-todos-success,
 .successmessage-alltodos {
   width: 100%;
+  padding-right: 20px;
+}
+
+.success-text-todo:hover {
+  text-decoration: none;
+}
+
+.login-div {
+  margin-top: 180px;
 }
