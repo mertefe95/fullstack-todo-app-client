@@ -55,7 +55,7 @@ function App() {
 		Axios.get("https://fullstack-todo-app-server.herokuapp.com/todos")
 			.then((res) => setTodos(res.data))
 			.catch((error) => console.log(error))
-	})
+	}, [])
 
 	return (
 		<Router>
@@ -66,12 +66,14 @@ function App() {
 					<Route exact path="/register" component={Register} />
 					<Route exact path="/login" component={Login} />
 					<Route exact path="/add-todo" component={AddTodo} />
-					
-					<Route
-						exact path="/mytodos"
-						render={() => <MyTodos todos={todos} />}
-					/>
+					{ userData.user === null ? (
+						<>
+						</>
+					): (
+							<Route exact path="/mytodos" render={() => <MyTodos todos={todos} />} />
+					)}
 					<Route component={pageNotFound} />
+					
 				</Switch>
 			</UserContext.Provider>
 		</Router>

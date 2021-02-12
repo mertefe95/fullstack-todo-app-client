@@ -14,7 +14,7 @@ function pageNotFound() {
           You may go to Homepage by clicking the button below,
             or
           <br/>
-          <span style={{textDecoration: "underline"}}>If you're trying to view your own todos you have to be logged in.</span><br/>
+          <span style={{textDecoration: "underline", fontWeight: "bold", fontSize: "25px"}}>If you're trying to view your own todos you have to be logged in.</span><br/>
         </p>
         <hr />
         <div className="d-flex justify-content-center notfound-button-div">

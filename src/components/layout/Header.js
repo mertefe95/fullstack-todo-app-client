@@ -24,7 +24,12 @@ function Header() {
 			<Navbar.Brand href="/">Todo App</Navbar.Brand>
 			<Nav className="mr-auto">
 				<Nav.Link href="/">VIEW ALL TODOS</Nav.Link>
+			{userData.user.id === null ? (
+				<>
+				</>
+			) : (
 				<Nav.Link href="/mytodos">VIEW ONLY MY TODOS</Nav.Link>
+			)}	
 			</Nav>
 			<Form inline>
 				{userData.user.id === null ? (

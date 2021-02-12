@@ -13,7 +13,7 @@ import Axios from "axios"
 function MyTodos({ todos }) {
 	const { userData } = useContext(UserContext)
 
-	console.log(userData)
+
 
 	const [edit, setEdit] = useState(false)
 	const [editId, setEditId] = useState();
