@@ -10,8 +10,6 @@ import { Link } from "react-router-dom"
 import { Check2Square } from "react-bootstrap-icons"
 
 function AllTodos({ todos }) {
-
-
 	const [edit, setEdit] = useState(false);
 	const [editId, setEditId] = useState();
 	const [editTitle, setEditTitle] = useState()
@@ -60,7 +58,7 @@ function AllTodos({ todos }) {
 		if (b.author  == userData.user.username) return 1;
 		else return -1;
 	})
-	
+
 	return (
 		<div className="all-todos">
 		{show.successText ? (
