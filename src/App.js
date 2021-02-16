@@ -55,7 +55,7 @@ function App() {
 		Axios.get("https://fullstack-todo-app-server.herokuapp.com/todos")
 			.then((res) => setTodos(res.data))
 			.catch((error) => console.log(error))
-	}, [todos])
+	}, [])
 
 	return (
 		<Router>
